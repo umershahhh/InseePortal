@@ -1,85 +1,33 @@
 'use client'
+import { useReveal } from '@/hooks/useReveal'
 
 const features = [
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="12" cy="12" r="3" stroke="#06B6D4" strokeWidth="2"/>
-        <path d="M12 5v2M12 17v2M5 12H3M21 12h-2" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-    title: 'AI Obstacle Detection',
-    description: 'YOLOv8 model processes the camera feed in real time, classifying obstacles — people, stairs, walls, vehicles — and delivers instant audio guidance to the user through Bluetooth earphones.',
-    accent: '#2563EB',
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#06B6D4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="12" cy="10" r="3" stroke="#06B6D4" strokeWidth="2"/>
-        <path d="M12 2v2M12 18v2" stroke="#06B6D4" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
-      </svg>
-    ),
-    title: 'Live GPS Tracking',
-    description: 'The cane continuously transmits location coordinates. Caretakers see a live map on their dashboard updated in real time via Supabase Realtime — no polling, no delay.',
-    accent: '#06B6D4',
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="18" cy="6" r="4" fill="rgba(239,68,68,0.15)" stroke="#EF4444" strokeWidth="1.5"/>
-        <path d="M18 4v2M18 8v.5" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-    title: 'Emergency Alert System',
-    description: 'A single button press on the cane fires an instant alert to the caretaker — with location, timestamp, and camera access. The person can signal severity with a short or long press.',
-    accent: '#EF4444',
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="3" width="18" height="18" rx="4" stroke="#10B981" strokeWidth="2"/>
-        <path d="M3 9h18" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M9 3v6" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round"/>
-        <rect x="7" y="13" width="4" height="3" rx="1" fill="rgba(16,185,129,0.2)" stroke="#10B981" strokeWidth="1.5"/>
-        <rect x="13" y="13" width="4" height="3" rx="1" fill="rgba(16,185,129,0.1)" stroke="#10B981" strokeWidth="1" opacity="0.6"/>
-      </svg>
-    ),
-    title: 'Caretaker Dashboard',
-    description: 'A dedicated dashboard gives caretakers a complete view — live map, alert history, camera snapshots, and a signal sender to communicate back to the person in real time.',
-    accent: '#10B981',
-  },
+  { icon:<EyeIcon/>,    title:'AI Obstacle Detection',   accent:'#2563EB', stat:'<30ms', statLabel:'Response time',    description:'YOLOv8 processes live camera frames, classifying obstacles — people, stairs, vehicles — delivering instant audio guidance via Bluetooth earphones.' },
+  { icon:<MapPinIcon/>, title:'Live GPS Tracking',       accent:'#06B6D4', stat:'5s',    statLabel:'Update interval',   description:'ESP32 WiFi transmits GPS coordinates every 5 seconds. Caretakers see a live moving map updated in real-time via Supabase Realtime — no refresh needed.' },
+  { icon:<BellIcon/>,   title:'Emergency Alert System',  accent:'#EF4444', stat:'1-tap', statLabel:'SOS trigger',       description:'One button press fires an instant SOS to the caretaker dashboard — with location, timestamp, and automatic camera feed activation.' },
+  { icon:<GridIcon/>,   title:'Caretaker Dashboard',     accent:'#10B981', stat:'3s',    statLabel:'Camera refresh',    description:'A real-time dashboard gives caretakers live map, alert history, camera snapshots every 3 seconds, and a signal sender to communicate back.' },
+  { icon:<CaneIcon/>,   title:'Smart Cane Hardware',     accent:'#8B5CF6', stat:'ESP32', statLabel:'WiFi enabled',      description:'ESP32, NEO-6M GPS, HC-SR04 ultrasonic, and USB camera all work together in one compact cane — connected directly to the cloud over WiFi.' },
+  { icon:<ChatIcon/>,   title:'Two-Way Communication',   accent:'#F59E0B', stat:'4s',    statLabel:'Signal latency',    description:'Caretakers send spoken signals — "Help is coming", "Are you okay?" — delivered as audio through the cane speaker via Microsoft edge-tts.' },
 ]
 
 export default function Features() {
-  return (
-    <section id="features" style={{ background: 'var(--l-surface)', padding: '100px 24px' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+  const ref = useReveal()
 
-        {/* Header */}
-        <div style={{ maxWidth: 560, marginBottom: 64 }}>
-          <div style={{
-            display: 'inline-block',
-            fontFamily: 'var(--font-dm)', fontSize: '0.75rem', fontWeight: 600,
-            color: '#2563EB', textTransform: 'uppercase', letterSpacing: '0.12em',
-            marginBottom: 16,
-          }}>
+  return (
+    <section id="features" ref={ref} style={{ background:'var(--l-surface)', padding:'96px 24px' }}>
+      <div style={{ maxWidth:1200, margin:'0 auto' }}>
+
+        <div className="reveal" style={{ maxWidth:560, marginBottom:60 }}>
+          <div style={{ fontFamily:'var(--font-dm)', fontSize:'0.73rem', fontWeight:600, color:'#2563EB', textTransform:'uppercase', letterSpacing:'0.12em', marginBottom:14 }}>
             Core capabilities
           </div>
-          <h2 className="landing-h2" style={{ marginBottom: 16 }}>
-            Built for safety.<br />Designed for independence.
-          </h2>
-          <p className="landing-body">
-            Every feature of INSEE is designed around one goal: giving visually impaired individuals and their caretakers full confidence in any situation.
-          </p>
+          <h2 className="landing-h2" style={{ marginBottom:14 }}>Built for safety.<br />Designed for independence.</h2>
+          <p className="landing-body">Every feature of INSEE is engineered around one goal: giving visually impaired individuals and their caretakers complete confidence in any environment.</p>
         </div>
 
-        {/* 2×2 Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:2 }} className="features-grid">
           {features.map((f, i) => (
-            <FeatureCard key={i} {...f} />
+            <FeatureCard key={i} {...f} delayClass={`reveal-delay-${(i%3)+1}`} />
           ))}
         </div>
       </div>
@@ -87,44 +35,29 @@ export default function Features() {
   )
 }
 
-function FeatureCard({ icon, title, description, accent }) {
+function FeatureCard({ icon, title, accent, stat, statLabel, description, delayClass }) {
   return (
-    <div style={{
-      padding: '48px 40px',
-      background: 'var(--l-bg)',
-      border: '1px solid var(--l-border)',
-      transition: 'border-color 0.25s, background 0.25s',
-      cursor: 'default',
-    }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = `${accent}30`; e.currentTarget.style.background = 'var(--l-surface-2)' }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--l-border)'; e.currentTarget.style.background = 'var(--l-bg)' }}>
-
-      {/* Icon box */}
-      <div style={{
-        width: 52, height: 52, borderRadius: 12,
-        background: `${accent}14`, border: `1px solid ${accent}25`,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        marginBottom: 24,
-      }}>
+    <div className={`reveal ${delayClass}`}
+      style={{ padding:'38px 34px', background:'var(--l-bg)', border:'1px solid var(--l-border)', transition:'border-color .25s, background .25s, transform .2s', cursor:'default' }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor=`${accent}35`; e.currentTarget.style.background='var(--l-surface-2)'; e.currentTarget.style.transform='translateY(-3px)' }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor='var(--l-border)'; e.currentTarget.style.background='var(--l-bg)'; e.currentTarget.style.transform='translateY(0)' }}>
+      <div style={{ width:48, height:48, borderRadius:12, background:`${accent}14`, border:`1px solid ${accent}25`, display:'flex', alignItems:'center', justifyContent:'center', marginBottom:20 }}>
         {icon}
       </div>
-
-      <h3 style={{
-        fontFamily: 'var(--font-libre)', fontWeight: 700,
-        fontSize: '1.15rem', color: '#F1F5F9', marginBottom: 12, letterSpacing: '-0.01em',
-      }}>
-        {title}
-      </h3>
-
-      <p style={{
-        fontFamily: 'var(--font-dm)', fontSize: '0.92rem', lineHeight: 1.7,
-        color: 'var(--l-muted)',
-      }}>
-        {description}
-      </p>
-
-      {/* Bottom accent line */}
-      <div style={{ marginTop: 28, width: 32, height: 2, background: `linear-gradient(90deg, ${accent}, transparent)`, borderRadius: 2 }} />
+      <h3 style={{ fontFamily:'var(--font-libre)', fontWeight:700, fontSize:'1rem', color:'var(--l-text)', marginBottom:10, letterSpacing:'-0.01em' }}>{title}</h3>
+      <p style={{ fontFamily:'var(--font-dm)', fontSize:'0.875rem', lineHeight:1.7, color:'var(--l-muted)', marginBottom:20 }}>{description}</p>
+      <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+        <div style={{ fontFamily:'var(--font-libre)', fontWeight:800, fontSize:'1.05rem', color:accent }}>{stat}</div>
+        <div style={{ fontFamily:'var(--font-dm)', fontSize:'0.72rem', color:'var(--l-muted)' }}>{statLabel}</div>
+      </div>
+      <div style={{ marginTop:18, width:32, height:2, background:`linear-gradient(90deg,${accent},transparent)`, borderRadius:2 }} />
     </div>
   )
 }
+
+function EyeIcon()    { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#2563EB" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="12" r="3" stroke="#06B6D4" strokeWidth="2"/></svg> }
+function MapPinIcon() { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#06B6D4" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="10" r="3" stroke="#06B6D4" strokeWidth="2"/></svg> }
+function BellIcon()   { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="#EF4444" strokeWidth="2" strokeLinecap="round"/></svg> }
+function GridIcon()   { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#10B981" strokeWidth="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#10B981" strokeWidth="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#10B981" strokeWidth="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="#10B981" strokeWidth="2"/></svg> }
+function CaneIcon()   { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M10 3 Q10 1 12 2 L14 18" stroke="#8B5CF6" strokeWidth="2" strokeLinecap="round"/><circle cx="14" cy="20" r="2" stroke="#8B5CF6" strokeWidth="1.8"/></svg> }
+function ChatIcon()   { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round"/></svg> }

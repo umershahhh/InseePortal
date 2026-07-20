@@ -7,17 +7,15 @@ export function useAlerts(personId) {
   const [alerts, setAlerts] = useState([])
 
   useEffect(() => {
-    // ── MOCK MODE ───────────────────────────────────────────────
     if (MOCK_MODE) {
       setAlerts(MOCK_ALERTS)
       return
     }
 
-    // ── REAL MODE ───────────────────────────────────────────────
     const id = personId || ''
     if (!id) return
 
-    // 1. Fetch existing alerts
+    // Initial fetch
     supabase
       .from('alerts')
       .select('*')
@@ -26,36 +24,30 @@ export function useAlerts(personId) {
       .limit(20)
       .then(({ data }) => { if (data) setAlerts(data) })
 
-    // 2. Listen for new alerts (SOS button press from ESP32)
+    // Realtime — new alert
     const channel = supabase
       .channel(`alerts-${id}`)
-      .on(
-        'postgres_changes',
-        { event: 'INSERT', schema: 'public', table: 'alerts', filter: `person_id=eq.${id}` },
-        (payload) => {
-          setAlerts(prev => [payload.new, ...prev])
-
-          // Browser push notification to caretaker
-          if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-            new Notification('INSEE — Emergency Alert', {
-              body:  'SOS button pressed on the cane. Open dashboard.',
-              icon:  '/favicon.ico',
-              badge: '/favicon.ico',
-            })
-          }
+      .on('postgres_changes', {
+        event: 'INSERT', schema: 'public', table: 'alerts',
+        filter: `person_id=eq.${id}`,
+      }, (payload) => {
+        setAlerts(prev => [payload.new, ...prev])
+        if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+          new Notification('INSEE — Emergency Alert', {
+            body: 'SOS button pressed on the cane.',
+            icon: '/favicon.ico',
+          })
         }
-      )
-      // Listen for severity updates (when person clarifies minor/major)
-      .on(
-        'postgres_changes',
-        { event: 'UPDATE', schema: 'public', table: 'alerts', filter: `person_id=eq.${id}` },
-        (payload) => {
-          setAlerts(prev => prev.map(a => a.id === payload.new.id ? payload.new : a))
-        }
-      )
+      })
+      // Realtime — severity update
+      .on('postgres_changes', {
+        event: 'UPDATE', schema: 'public', table: 'alerts',
+        filter: `person_id=eq.${id}`,
+      }, (payload) => {
+        setAlerts(prev => prev.map(a => a.id === payload.new.id ? payload.new : a))
+      })
       .subscribe()
 
-    // Request notification permission once
     if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
       Notification.requestPermission()
     }
@@ -63,24 +55,22 @@ export function useAlerts(personId) {
     return () => supabase.removeChannel(channel)
   }, [personId])
 
-  // Used in mock mode to add a simulated alert
+  // Mock: add a simulated alert
   function addMockAlert(alert) {
     setAlerts(prev => [alert, ...prev])
   }
 
-  // Resolve an alert (caretaker marks it done)
+  // Resolve one alert
   function resolveAlert(alertId) {
+    const resolved = { status: 'resolved', resolved_at: new Date().toISOString() }
     setAlerts(prev =>
-      prev.map(a => a.id === alertId
-        ? { ...a, status: 'resolved', resolved_at: new Date().toISOString() }
-        : a
-      )
+      prev.map(a => a.id === alertId ? { ...a, ...resolved } : a)
     )
     if (!MOCK_MODE) {
-      supabase
-        .from('alerts')
-        .update({ status: 'resolved', resolved_at: new Date().toISOString() })
+      supabase.from('alerts')
+        .update(resolved)
         .eq('id', alertId)
+        .then(() => {})
     }
   }
 
