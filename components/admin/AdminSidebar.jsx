@@ -103,7 +103,7 @@ function LogoSVG() {
       <path d="M16 4 Q14 12 16 20" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
       <defs>
         <linearGradient id="adm-logo-g" x1="0" y1="0" x2="32" y2="32">
-          <stop offset="0%" stopColor="#7C3AED" /><stop offset="100%" stopColor="#2563EB" />
+          <stop offset="0%" stopColor="#7C3AED" /><stop offset="100%" stopColor="#6366F1" />
         </linearGradient>
       </defs>
     </svg>

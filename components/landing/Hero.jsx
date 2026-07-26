@@ -25,8 +25,8 @@ export default function Hero() {
     }} className="grid-bg">
 
       {/* Ambient glows */}
-      <div style={{ position:'absolute', top:'10%', left:'-8%', width:700, height:700, background:'radial-gradient(circle,rgba(37,99,235,.08) 0%,transparent 65%)', borderRadius:'50%', pointerEvents:'none' }} />
-      <div style={{ position:'absolute', bottom:'5%', right:'-5%', width:500, height:500, background:'radial-gradient(circle,rgba(6,182,212,.06) 0%,transparent 65%)', borderRadius:'50%', pointerEvents:'none' }} />
+      <div style={{ position:'absolute', top:'10%', left:'-8%', width:700, height:700, background:'radial-gradient(circle,rgba(99,102,241,.08) 0%,transparent 65%)', borderRadius:'50%', pointerEvents:'none' }} />
+      <div style={{ position:'absolute', bottom:'5%', right:'-5%', width:500, height:500, background:'radial-gradient(circle,rgba(34,211,238,.06) 0%,transparent 65%)', borderRadius:'50%', pointerEvents:'none' }} />
 
       <div style={{ maxWidth:1200, margin:'0 auto', padding:'60px 24px', width:'100%', display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center' }} className="hero-grid">
 
@@ -117,17 +117,17 @@ function CaneSVG() {
   return (
     <svg viewBox="0 0 420 520" fill="none" style={{ width:'100%', maxWidth:380 }}>
       <circle cx="210" cy="350" r="150" fill="url(#hero-glow)" opacity="0.1" />
-      <circle cx="210" cy="350" r="55" stroke="rgba(37,99,235,0.6)" strokeWidth="1.5" style={{ transformOrigin:'210px 350px', animation:'radarPing 3s ease-out infinite' }} />
-      <circle cx="210" cy="350" r="55" stroke="rgba(6,182,212,0.4)" strokeWidth="1"   style={{ transformOrigin:'210px 350px', animation:'radarPing 3s ease-out 1s infinite' }} />
-      <circle cx="210" cy="350" r="55" stroke="rgba(37,99,235,0.2)" strokeWidth="1"   style={{ transformOrigin:'210px 350px', animation:'radarPing 3s ease-out 2s infinite' }} />
+      <circle cx="210" cy="350" r="55" stroke="rgba(99,102,241,0.6)" strokeWidth="1.5" style={{ transformOrigin:'210px 350px', animation:'radarPing 3s ease-out infinite' }} />
+      <circle cx="210" cy="350" r="55" stroke="rgba(34,211,238,0.4)" strokeWidth="1"   style={{ transformOrigin:'210px 350px', animation:'radarPing 3s ease-out 1s infinite' }} />
+      <circle cx="210" cy="350" r="55" stroke="rgba(99,102,241,0.2)" strokeWidth="1"   style={{ transformOrigin:'210px 350px', animation:'radarPing 3s ease-out 2s infinite' }} />
       <circle cx="210" cy="350" r="90"  stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
       <circle cx="210" cy="350" r="130" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
       <path d="M152 90 Q152 60 186 64" stroke="url(#cane-g)" strokeWidth="8" strokeLinecap="round" />
       <path d="M152 90 L152 118"       stroke="url(#cane-g)" strokeWidth="8" strokeLinecap="round" />
       <path d="M186 64 L210 350"       stroke="url(#cane-g)" strokeWidth="7" strokeLinecap="round" />
-      <circle cx="210" cy="350" r="12" fill="rgba(37,99,235,0.25)" />
-      <circle cx="210" cy="350" r="8"  fill="#2563EB" />
-      <circle cx="210" cy="350" r="4"  fill="#06B6D4" />
+      <circle cx="210" cy="350" r="12" fill="rgba(99,102,241,0.25)" />
+      <circle cx="210" cy="350" r="8"  fill="#6366F1" />
+      <circle cx="210" cy="350" r="4"  fill="#22D3EE" />
       <circle cx="210" cy="350" r="2"  fill="#fff" />
       <circle cx="295" cy="220" r="7" fill="#EF4444" opacity="0.9"><animate attributeName="opacity" values="0.9;0.4;0.9" dur="2.1s" repeatCount="indefinite" /></circle>
       <text x="306" y="224" fill="rgba(239,68,68,0.85)" fontSize="11" fontFamily="DM Sans,sans-serif" fontWeight="600">Person</text>
@@ -137,10 +137,10 @@ function CaneSVG() {
       <line x1="210" y1="350" x2="128" y2="300" stroke="rgba(245,158,11,0.25)" strokeWidth="1.5" strokeDasharray="6 4" />
       <defs>
         <linearGradient id="cane-g" x1="152" y1="60" x2="210" y2="350" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#3B82F6"/><stop offset="100%" stopColor="#06B6D4"/>
+          <stop offset="0%" stopColor="#3B82F6"/><stop offset="100%" stopColor="#22D3EE"/>
         </linearGradient>
         <radialGradient id="hero-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#2563EB"/><stop offset="100%" stopColor="#06B6D4" stopOpacity="0"/>
+          <stop offset="0%" stopColor="#6366F1"/><stop offset="100%" stopColor="#22D3EE" stopOpacity="0"/>
         </radialGradient>
       </defs>
       <style>{`@keyframes radarPing{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.6);opacity:0}}`}</style>

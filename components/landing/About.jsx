@@ -9,7 +9,7 @@ export default function About() {
       <div style={{ maxWidth:1200, margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:80, alignItems:'center' }} className="hero-grid">
 
         <div className="reveal">
-          <div style={{ fontFamily:'var(--font-dm)', fontSize:'0.73rem', fontWeight:600, color:'#8B5CF6', textTransform:'uppercase', letterSpacing:'0.12em', marginBottom:16 }}>About the project</div>
+          <div style={{ fontFamily:'var(--font-dm)', fontSize:'0.73rem', fontWeight:600, color:'#6366F1', textTransform:'uppercase', letterSpacing:'0.12em', marginBottom:16 }}>About the project</div>
           <h2 className="landing-h2" style={{ marginBottom:20 }}>
             Final Year Project —<br />
             <span className="text-gradient">Computer Science</span>
@@ -28,7 +28,7 @@ export default function About() {
               { label:'Database', value:'Supabase PostgreSQL + Realtime' },
             ].map(r => (
               <div key={r.label} style={{ display:'flex', gap:11, alignItems:'flex-start' }}>
-                <div style={{ width:6, height:6, borderRadius:'50%', background:'#2563EB', marginTop:7, flexShrink:0 }} />
+                <div style={{ width:6, height:6, borderRadius:'50%', background:'#6366F1', marginTop:7, flexShrink:0 }} />
                 <div>
                   <span style={{ fontFamily:'var(--font-dm)', fontWeight:600, fontSize:'0.875rem', color:'var(--l-text)' }}>{r.label}: </span>
                   <span style={{ fontFamily:'var(--font-dm)', fontSize:'0.875rem', color:'var(--l-muted)' }}>{r.value}</span>
@@ -48,10 +48,10 @@ export default function About() {
 
 function ArchSVG() {
   const boxes = [
-    { label:'Smart Cane', sub:'ESP32 + GPS + Sensor + Camera', color:'#2563EB', y:0   },
-    { label:'Next.js API', sub:'Vercel serverless functions',   color:'#06B6D4', y:128 },
+    { label:'Smart Cane', sub:'ESP32 + GPS + Sensor + Camera', color:'#6366F1', y:0   },
+    { label:'Next.js API', sub:'Vercel serverless functions',   color:'#22D3EE', y:128 },
     { label:'Supabase',   sub:'DB + Realtime + Storage',       color:'#10B981', y:256 },
-    { label:'Dashboard',  sub:'Caretaker web app',             color:'#8B5CF6', y:384 },
+    { label:'Dashboard',  sub:'Caretaker web app',             color:'#6366F1', y:384 },
   ]
   return (
     <svg viewBox="0 0 340 500" fill="none" style={{ width:'100%', maxWidth:340 }}>

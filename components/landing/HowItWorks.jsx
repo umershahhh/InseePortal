@@ -2,8 +2,8 @@
 import { useReveal } from '@/hooks/useReveal'
 
 const steps = [
-  { num:'01', color:'#2563EB', title:'Cane senses the environment', body:'HC-SR04 ultrasonic measures real distances. Camera feeds YOLO for object classification. Both combine for accurate, contextual obstacle warnings spoken via Bluetooth earphones.' },
-  { num:'02', color:'#06B6D4', title:'Location is tracked live',    body:'NEO-6M GPS sends coordinates to ESP32, which POSTs to the Next.js API every 5 seconds. Supabase Realtime broadcasts each update to the caretaker dashboard map instantly.' },
+  { num:'01', color:'#6366F1', title:'Cane senses the environment', body:'HC-SR04 ultrasonic measures real distances. Camera feeds YOLO for object classification. Both combine for accurate, contextual obstacle warnings spoken via Bluetooth earphones.' },
+  { num:'02', color:'#22D3EE', title:'Location is tracked live',    body:'NEO-6M GPS sends coordinates to ESP32, which POSTs to the Next.js API every 5 seconds. Supabase Realtime broadcasts each update to the caretaker dashboard map instantly.' },
   { num:'03', color:'#EF4444', title:'Caretaker responds instantly', body:'Button press fires SOS to Supabase. Dashboard alert appears, push notification reaches caretaker phone, camera starts uploading snapshots. Caretaker reply is spoken aloud to the person.' },
 ]
 
@@ -15,7 +15,7 @@ export default function HowItWorks() {
       <div style={{ maxWidth:1200, margin:'0 auto' }}>
 
         <div className="reveal" style={{ textAlign:'center', maxWidth:520, margin:'0 auto 68px' }}>
-          <div style={{ fontFamily:'var(--font-dm)', fontSize:'0.73rem', fontWeight:600, color:'#06B6D4', textTransform:'uppercase', letterSpacing:'0.12em', marginBottom:16 }}>How it works</div>
+          <div style={{ fontFamily:'var(--font-dm)', fontSize:'0.73rem', fontWeight:600, color:'#22D3EE', textTransform:'uppercase', letterSpacing:'0.12em', marginBottom:16 }}>How it works</div>
           <h2 className="landing-h2">From detection to response<br />in seconds</h2>
         </div>
 

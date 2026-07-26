@@ -2,8 +2,8 @@
 import { useEffect, useRef, useState } from 'react'
 
 const stats = [
-  { value:30,  suffix:'ms', label:'Obstacle detection latency', color:'#2563EB' },
-  { value:5,   suffix:'s',  label:'GPS update frequency',       color:'#06B6D4' },
+  { value:30,  suffix:'ms', label:'Obstacle detection latency', color:'#6366F1' },
+  { value:5,   suffix:'s',  label:'GPS update frequency',       color:'#22D3EE' },
   { value:3,   suffix:'s',  label:'Camera snapshot interval',   color:'#10B981' },
   { value:99,  suffix:'%',  label:'WiFi uptime in testing',     color:'#8B5CF6' },
 ]

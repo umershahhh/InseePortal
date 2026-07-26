@@ -162,7 +162,7 @@ function LogoSVG() {
       <path d="M20 6 Q22 9 18 11" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round" />
       <defs>
         <linearGradient id="nav-lg" x1="0" y1="0" x2="32" y2="32">
-          <stop offset="0%" stopColor="#2563EB"/><stop offset="100%" stopColor="#06B6D4"/>
+          <stop offset="0%" stopColor="#6366F1"/><stop offset="100%" stopColor="#22D3EE"/>
         </linearGradient>
       </defs>
     </svg>
